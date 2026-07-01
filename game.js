@@ -88,21 +88,21 @@ const PRIZES = [
     icon: "🏠",
     title: "¡Regalo sorpresa #2!",
     desc: "Un pequeño recuerdo de nuestro viaje",
-    hint: "Pista: Tienes que buscar detrás de nuestro próximo viaje de navidad",
+    hint: "Pista: Busca detrás de nuestro próximo viaje de navidad.",
   },
   {
     after: 7,
-    icon: "🎁",
+    icon: "📷",
     title: "¡Regalo sorpresa #3!",
     desc: "Un recuerdo de estos 12 meses increíbles...",
-    hint: "Mira dentro del cajón de la mesita 🗝️",
+    hint: "Pista: Busca en la esquina con más letras de la casa.",
   },
   {
     after: 10,
-    icon: "🎁",
-    title: "¡Regalo final! ¡Eres la campeona!",
-    desc: "Has respondido todo perfecto... igual que este año contigo.",
-    hint: "El último regalo lo tienes en mis manos 💍",
+    icon: "🎵",
+    title: "¡Regalo final!",
+    desc: "Has respondido todo perfecto... ahora te espera la última sorpresa.",
+    hint: "Pista: Busca un sobre en tu futuro lugar favorito de la cocina.",
   },
 ];
 
