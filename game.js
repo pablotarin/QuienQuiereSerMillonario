@@ -20,7 +20,7 @@ const QUESTIONS = [
   },
   {
     q: "¿Cuál ha sido la única saga de peliculas que hemos visto entera?",
-    a: ["Los juegos del hambre", "Piratas del Caribe", "Harry Potter", "no hemos terminado ninguna"],
+    a: ["Los juegos del hambre", "Piratas del Caribe", "Harry Potter", "No hemos terminado ninguna"],
     correct: 2,
   },
   {
@@ -38,8 +38,8 @@ const QUESTIONS = [
     a: [
       "Ramo de rosas, chocolate, brazalete y pendientes",
       "Ramo de flores, brazalete, chocolates y pendientes",
-      "Brazalete, pendientes y zapatillas",
-      "Ramo de flores, chocolate, zapatillas y pendientes",
+      "Ramo de flores, brazalete, pendientes y zapatillas",
+      "Ramo de rosas, chocolate, zapatillas y pendientes",
     ],
     correct: 1,
   },
@@ -95,14 +95,14 @@ const PRIZES = [
     icon: "📷",
     title: "¡Regalo sorpresa #3!",
     desc: "Un recuerdo de estos 12 meses increíbles...",
-    hint: "Pista: Busca en la esquina con más letras de la casa.",
+    hint: "Pista: Busca donde aparecen los primeros recuerdos de tu vida."
   },
   {
     after: 10,
     icon: "🎵",
     title: "¡Regalo final!",
     desc: "Has respondido todo perfecto... ahora te espera la última sorpresa.",
-    hint: "Pista: Busca un sobre en tu futuro lugar favorito de la cocina.",
+    hint: "Pista: Busca en tu futuro lugar favorito de la cocina.",
   },
 ];
 
@@ -110,7 +110,7 @@ const CALL_HINT =
   "«Hola Cande, he estado buscando y creo que la respuesta correcta es la B. ¡Mucha suerte!»";
 
 /* ═══════════════════════════════════════════
-   AUDIO — Web Audio API (sin archivos externos)
+   AUDIO — Web Audio API
 ═══════════════════════════════════════════ */
 
 let audioCtx = null;
