@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖 Aniversario — ¿Quién quiere ser millonaria?</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="app">
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- ═══════════════════════════════════
+         PANTALLA: INTRO
+    ═══════════════════════════════════ -->
+    <section id="screen-intro" class="screen active">
+      <div class="intro-content">
+        <div class="heart-pulse">🐭💙</div>
+        <h1 class="intro-title">¿Quién quiere ser regalada?</h1>
+        <p class="intro-subtitle">Edición especial · 1er aniversario</p>
+        <div class="rules-box">
+          <p class="rules-title">📜 REGLAS 📜</p>
+          <ul class="rules-list">
+            <li>🎯 10 preguntas sobre nosotros</li>
+            <li>🎁 4 regalos si aciertas todas</li>
+            <li>🃏 3 comodines: 50:50, público y llamada</li>
+            <li>👑 Si llegas al final... te espera algo especial</li>
+          </ul>
+        </div>
+        <button class="btn-primary" onclick="startGame()">¡EMPEZAR A JUGAR!</button>
+      </div>
+    </section>
+    <img class="intro-decor" src="/img/logo.png" alt="Logo">
+
+    <!-- ═══════════════════════════════════
+         PANTALLA: JUEGO
+    ═══════════════════════════════════ -->
+    <section id="screen-game" class="screen hidden">
+      <div class="game-layout">
+
+        <!-- Cabecera -->
+        <div class="game-header">
+          <span id="q-counter" class="q-counter">Pregunta 1 de 10</span>
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+          <span id="q-prize-label" class="q-prize">🎁 Premio en Q2</span>
+        </div>
+
+        <!-- Pregunta -->
+        <div class="question-box">
+          <p id="question-text"></p>
+        </div>
+
+        <!-- Comodines -->
+        <div class="lifelines">
+          <button id="lifeline-fifty"    class="lifeline-btn" onclick="useLifeline('fifty')">
+            <span class="lifeline-icon">50:50</span>
+          </button>
+          <button id="lifeline-audience" class="lifeline-btn" onclick="useLifeline('audience')">
+            <span class="lifeline-icon">👥</span><span>Público</span>
+          </button>
+          <button id="lifeline-call"     class="lifeline-btn" onclick="useLifeline('call')">
+            <span class="lifeline-icon">📞</span><span>Llamada</span>
+          </button>
+        </div>
+
+        <!-- Respuestas -->
+        <div class="answers-grid" id="answers-grid">
+          <button class="answer-btn" id="ans-0" onclick="selectAnswer(0)">
+            <span class="answer-label">A</span>
+            <span class="answer-inner" id="ans-inner-0">
+              <img class="answer-img" id="ans-img-0" src="" alt="">
+              <span class="answer-text" id="ans-text-0"></span>
+              <div class="answer-audio-wrap">
+                <span class="answer-audio" id="ans-audio-0" role="button" tabindex="0">▶️ Play</span>
+              </div>
+            </span>
+          </button>
+          <button class="answer-btn" id="ans-1" onclick="selectAnswer(1)">
+            <span class="answer-label">B</span>
+            <span class="answer-inner" id="ans-inner-1">
+              <img class="answer-img" id="ans-img-1" src="" alt="">
+              <span class="answer-text" id="ans-text-1"></span>
+              <div class="answer-audio-wrap">
+                <span class="answer-audio" id="ans-audio-1" role="button" tabindex="0">▶️ Play</span>
+              </div>
+            </span>
+          </button>
+          <button class="answer-btn" id="ans-2" onclick="selectAnswer(2)">
+            <span class="answer-label">C</span>
+            <span class="answer-inner" id="ans-inner-2">
+              <img class="answer-img" id="ans-img-2" src="" alt="">
+              <span class="answer-text" id="ans-text-2"></span>
+              <div class="answer-audio-wrap">
+                <span class="answer-audio" id="ans-audio-2" role="button" tabindex="0">▶️ Play</span>
+              </div>
+            </span>
+          </button>
+          <button class="answer-btn" id="ans-3" onclick="selectAnswer(3)">
+            <span class="answer-label">D</span>
+            <span class="answer-inner" id="ans-inner-3">
+              <img class="answer-img" id="ans-img-3" src="" alt="">
+              <span class="answer-text" id="ans-text-3"></span>
+              <div class="answer-audio-wrap">
+                <span class="answer-audio" id="ans-audio-3" role="button" tabindex="0">▶️ Play</span>
+              </div>
+            </span>
+          </button>
+        </div>
+
+        <!-- Escalera lateral -->
+        <div class="ladder">
+          <div class="ladder-item milestone separator-above" id="ladder-10">
+            <span class="l-num">10</span>
+            <span class="l-label">Regalo #5</span>
+            <span class="l-icon">🎁</span>
+          </div>
+          <div class="ladder-item" id="ladder-9">
+            <span class="l-num">9</span>
+            <span class="l-label">Pregunta 9</span>
+            <span class="l-icon"></span>
+          </div>
+          <div class="ladder-item milestone separator-above" id="ladder-8">
+            <span class="l-num">8</span>
+            <span class="l-label">Regalo #4</span>
+            <span class="l-icon">🎁</span>
+          </div>
+          <div class="ladder-item" id="ladder-7">
+            <span class="l-num">7</span>
+            <span class="l-label">Pregunta 7</span>
+            <span class="l-icon"></span>
+          </div>
+          <div class="ladder-item milestone separator-above" id="ladder-6">
+            <span class="l-num">6</span>
+            <span class="l-label">Regalo #3</span>
+            <span class="l-icon">🎁</span>
+          </div>
+          <div class="ladder-item" id="ladder-5">
+            <span class="l-num">5</span>
+            <span class="l-label">Pregunta 5</span>
+            <span class="l-icon"></span>
+          </div>
+          <div class="ladder-item milestone separator-above" id="ladder-4">
+            <span class="l-num">4</span>
+            <span class="l-label">Regalo #2</span>
+            <span class="l-icon">🎁</span>
+          </div>
+          <div class="ladder-item" id="ladder-3">
+            <span class="l-num">3</span>
+            <span class="l-label">Pregunta 3</span>
+            <span class="l-icon"></span>
+          </div>
+          <div class="ladder-item milestone separator-above" id="ladder-2">
+            <span class="l-num">2</span>
+            <span class="l-label">Regalo #1</span>
+            <span class="l-icon">🎁</span>
+          </div>
+          <div class="ladder-item" id="ladder-1">
+            <span class="l-num">1</span>
+            <span class="l-label">Pregunta 1</span>
+            <span class="l-icon"></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         PANTALLA: PREMIO
+    ═══════════════════════════════════ -->
+    <section id="screen-prize" class="screen hidden">
+      <div class="prize-content">
+        <div id="prize-icon" class="prize-icon"></div>
+        <h2 id="prize-title" class="prize-title"></h2>
+        <p id="prize-desc" class="prize-desc"></p>
+        <div class="prize-divider"></div>
+        <p id="prize-hint" class="prize-hint"></p>
+        <button id="prize-btn" class="btn-primary" onclick="continuePlaying()">Seguir jugando ➡️</button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         PANTALLA: VICTORIA
+    ═══════════════════════════════════ -->
+    <section id="screen-win" class="screen hidden">
+      <div class="win-content">
+        <div class="win-icon">👑</div>
+        <h2 class="win-title">¡Feliz primer aniversario!</h2>
+        <p class="win-text">
+          Has respondido todo correctamente...<br>pero eso no me sorprende.<br><br>
+          Igual que este año: has sabido llenar cada momento<br>
+          con tu sonrisa, tu cariño y tu magia.<br><br>
+          <span class="win-highlight">Gracias por ser la persona más especial de mi vida. 🐭💙</span>
+        </p>
+        <button class="btn-secondary" onclick="restartGame()">🔁 Jugar de nuevo</button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         MODAL
+    ═══════════════════════════════════ -->
+    <div id="modal" class="modal-overlay hidden">
+      <div class="modal-box">
+        <div id="modal-icon" class="modal-icon"></div>
+        <h3 id="modal-title" class="modal-title"></h3>
+        <div id="modal-body" class="modal-body"></div>
+        <button id="modal-close-btn" class="modal-close" onclick="closeModal()">Cerrar</button>
+      </div>
+    </div>
+
+  </div><!-- /#app -->
+
+  <script src="game.js"></script>
+</body>
+</html>
